@@ -7,16 +7,15 @@ import cv2
 OPENCV_OBJECT_TRACKERS = {
 	"csrt": cv2.TrackerCSRT_create,
 	"kcf": cv2.TrackerKCF_create,
-	#"boosting": cv2.TrackerBoosting_create,
+	"boosting": cv2.TrackerBoosting_create,
 	"mil": cv2.TrackerMIL_create,
-	#"tld": cv2.TrackerTLD_create,
-	#"medianflow": cv2.TrackerMedianFlow_create,
-	#"mosse": cv2.TrackerMOSSE_create
+	"tld": cv2.TrackerTLD_create,
+	"medianflow": cv2.TrackerMedianFlow_create,
+	"mosse": cv2.TrackerMOSSE_create
 }
 
-
 # Choose tracker
-tracker_name = "csrt"
+tracker_name = "boosting"
 tracker = OPENCV_OBJECT_TRACKERS[tracker_name]()
 #tracker = TrackerMOSSE_create()
 
@@ -24,14 +23,14 @@ tracker = OPENCV_OBJECT_TRACKERS[tracker_name]()
 initBB = None
 
 # Choose video file
-vs = cv2.VideoCaputre("./JAAD_clips/video_0001.mp4")
+vs = cv2.VideoCapture("./JAAD_clips/video_0001.mp4")
 
 # Init fps throughput estimator
 fps = None
 
 # Loop over frames
 while True:
-    frame = vs.read()
+    frame = vs.read()[1]
     if frame is None:
         break
     # Resize frame and grab dimensions
