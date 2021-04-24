@@ -1,3 +1,7 @@
 JAAD_clips/
 .DS_Store
 JAAD-JAAD_2.0
+images
+MobileNetSSD_deploy.caffemodel
+MobileNetSSD_deploy.prototxt.txt
+pi-object-detection-master
