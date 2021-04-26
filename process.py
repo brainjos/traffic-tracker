@@ -27,8 +27,7 @@ fps = FPS().start()
 
 threshold = 0.1
 
-colorsCount = 0
-COLORS = np.random.uniform(0, 255, size=(50, 3))
+COLORS = np.random.uniform(0, 255, size=(200, 3))
 
 #(last known centroid for each person, # of frames since last appearance) delete after leaving the image?
 PEOPLE = []
@@ -61,9 +60,12 @@ total_metrics = np.empty((0, 18))
 total_summary = None
 
 # Loop over videos
-for vid_idx in range(3):
-
+#for vid_idx in range(len(gt_data)):
+for vid_idx in range(28, 29):
     f = 0
+    colorsCount = 0
+    PEOPLE = []
+
     vidStr = filenames[vid_idx]
     vs = cv2.VideoCapture("./JAAD_clips/" + vidStr + ".mp4")
     
@@ -235,6 +237,7 @@ for vid_idx in range(3):
 
     vmh = mm.metrics.create()
     vid_summary = vmh.compute(vidacc, metrics=mm.metrics.motchallenge_metrics, name='vidacc')
+    #print(vid_summary)
     vid_nump = vid_summary.to_numpy()
     total_metrics = np.append(total_metrics, vid_nump, axis=0)
 
